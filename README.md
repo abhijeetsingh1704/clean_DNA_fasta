@@ -3,9 +3,9 @@ Program to clean DNA fasta sequences and removes and illegal characters in seque
 
 # Usage 
 ```
-$ bash clean_DNA_fasta
+$ bash clean_DNA_fasta.sh
 ```
 # Or  
 ```
-$ bash clean_DNA_fasta <inputfile>
+$ bash clean_DNA_fasta.sh <inputfile>
 ```
