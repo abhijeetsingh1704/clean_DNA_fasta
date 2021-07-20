@@ -1,38 +1,34 @@
 #!/bin/bash
 
 # Program - clean_DNA_fasta
-# Date    - Wed Apr 21 11:40:05 CEST 2021
+# Date    - Tue 20 Jul 12:07:24 CEST 2021
 # Sign    - Abhi
-
-
 ##################
-clear
+#
 DIR=`pwd`
-echo "Program written by Abhijeet Singh (abhijeetsingh.aau@gmail.com)
-"
+#
+echo "Program written by Abhijeet Singh (abhijeetsingh.aau@gmail.com)"
+#
 if [ "$#" -gt 0 ]; then
 	filename=$1
     file=$1
-    
 else
 echo "Enter your multifasta file name"
 read -p 'Filename: ' file
-
 fi
-    if [ -z "$file" ]
-        then
-            exit
-    fi
-    if [ ! -f $file ]; then
-    echo "
-ERROR: File \"$file\" not found in \"$DIR\"  
-"
-    exit 0
-    fi
-echo "
-Processing: $file
-"
+#
+if [ -z "$file" ]; then
+        exit
+fi
+#
+if [ ! -f $file ]; then
+echo "ERROR: File \"$file\" not found in \"$DIR\""
+exit 0
+fi
+echo "Processing: ${file}"
+#
 mkdir -p ${DIR}/analysis && cd $_
+#
 cp ../${file} .
 sed -e 's/ /_/g;s/-/_/g;s/,/_/g' ${file} > ${file}_2 
 awk '/^>/ {if(N>0) printf("\n"); printf("%s\n",$0);++N;next;} { printf("%s",$0);} END {printf("\n");}' ${file}_2 > ${file}_3
@@ -49,3 +45,4 @@ rm -rf ${DIR}/analysis
 echo "                 --------------------------------"
 echo "Result file --->> ${file}_processed.fa           "
 echo "                 --------------------------------"
+# End of script
